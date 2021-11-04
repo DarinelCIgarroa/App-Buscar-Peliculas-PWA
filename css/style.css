@@ -1,0 +1,20 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #34495e;
+    color: #fff;
+}
+#app{
+    margin: 5px;
+}
+.content-movie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-body {
+    color: black;
+}

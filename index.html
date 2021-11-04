@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <meta name="description" content="App buscadora de películas realizado con vueJs">
+    <meta name="theme-color" content="#000" />
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="shortcut icon" href="./img/icon32.png" type="image/png">
+    <link rel="apple-touch-icon" href="./img/icon32.png">
+    <link rel="apple-touch-startup-image" href="./img/icon32.png">
+    <link rel="manifest" href="./manifest.json">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="content-movie">
+                <h1>{{ title }}</h1>
+                <form @submit.prevent="getMovie">
+                    <div class="mb-3">
+                        <label for="searchMovie" class="form-label">Search Movie</label>
+                        <input v-model="movieSearch" type="text" class="form-control" id="searchMovie"
+                            placeholder="Search Movie">
+                    </div>
+                    <button type="submit" class="btn btn-primary m-2">Search</button>
+                </form>
+                <h2 v-show="loadingSearch">searching...</h2>
+                <div class="movie">
+                    <h2 v-if="movie.Error == 'Incorrect IMDb ID.' ">No searches yet</h2>
+                    <h2 v-else-if="movie.Error == 'Movie not found!' ">Movie Not Found</h2>
+                    <div v-else class="card mb-2" style="width: 18rem;">
+
+                        <img :src="movie.Poster" class="card-img-top" alt="movie.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.Title }}</h5>
+                            <p class="card-text">Released: {{ movie.Released }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Director: {{ movie.Director }}</li>
+                            <li class="list-group-item">Actors: {{ movie.Actors }}</li>
+                            <li class="list-group-item">Country: {{ movie.Country }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./load.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/mountApp.js"></script>
+</body>
+
+</html>
